@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Invoice from './Invoice';
 
 class InvoiceList extends Component {
     constructor(props) {
@@ -7,7 +8,14 @@ class InvoiceList extends Component {
     }
     render() {
         return (
-            <h1>Invoice List</h1>
+            <div className='InvoiceList'>
+                <h1>Invoice List</h1>
+                <ul className='InvoiceList-ul'>
+                    <li><Invoice number="100" /></li>
+                    <li><Invoice number="101" /></li>
+                    <li><Invoice number="102" /></li>
+                </ul>
+            </div>
         );
     }
 }

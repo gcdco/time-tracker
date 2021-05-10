@@ -1,0 +1,9 @@
+.ProjectList {
+    display: flexbox;
+    justify-content: center;
+}
+
+ul {
+    list-style-type: none;
+    text-align: left;
+}
