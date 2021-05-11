@@ -8,9 +8,9 @@ class Task extends Component {
     render() {
         return (
             <div className="Task">
-                <p>{this.props.description}</p>
-                <p><strong>{this.props.hours} Hours</strong></p>
-            </div>
+                <strong>{this.props.description}</strong>....{this.props.hours} Hours
+
+            </div >
         );
     }
 }

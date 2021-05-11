@@ -10,36 +10,29 @@ class ProjectList extends Component {
         this.state = { projects: [] }
     }
     componentDidMount() {
-        axios.get(`http://localhost:4000/get/projects`)
+        axios.get(`http://localhost:4000/projects`)
             .then(res => {
+                console.log(res);
                 this.setState({ projects: res.data });
                 //const persons = res.data;
-                //console.log(persons);
                 console.log(this.state.projects);
             })
     }
     render() {
         let p = this.state.projects.map((proj) => {
-            < Project name={proj.name} />
+            let link = `http://localhost:3000/projects/${proj.id}`;
+            return <li><a href={link}>{proj.name}</a></li>
         });
+
         return (
             <div className='ProjectList'>
-                {p}
                 <h1>Projects</h1>
                 <ul className='ProjectList-ul'>
-                    <li>1515 Main St. .....20 hours</li>
-                    <li>1050 Alabama St. .....24 hours</li>
-                    <li>1245 Central St. .....15 hours</li>
+                    {p}
                 </ul>
-                <Project />
             </div>
         );
     }
 }
 
 export default ProjectList;
-
-
-{/* <li><Project name="1515 Main St." hours="20" /></li>
-<li><Project name="1050 Alabama St." hours="24" /></li>
-<li><Project name="1245 Central St." hours="15" /></li> */}

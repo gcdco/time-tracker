@@ -10,10 +10,10 @@ class NavBar extends Component {
     render() {
         return (
             <nav className="Navbar">
-                <NavLink exact to="/"
+                {/* <NavLink exact to="/"
                     activeClassName="NavBar-active">
                     Home
-                </NavLink>
+                </NavLink> */}
                 <NavLink exact to="/projects"
                     activeClassName="NavBar-active">
                     Projects
