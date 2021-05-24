@@ -4,11 +4,11 @@ import Navbar from './components/NavBar';
 import Export from './components/Export';
 import InvoiceList from './components/InvoiceList';
 import Invoice from './components/Invoice';
-import NewProject from './components/NewProject';
 import ProjectList from './components/ProjectList';
+import ClientList from './components/ClientList';
+import Client from './components/Client';
 import Project from './components/Project';
 import TaskList from './components/TaskList';
-import AddTask from './components/AddTask';
 
 import './App.css';
 
@@ -21,11 +21,12 @@ function App() {
         <Route exact path="/export" render={() => <Export />} />
         <Route exact path="/invoices" render={() => <InvoiceList />} />
         <Route exact path="/invoices/:id" render={(routeProps) => <Invoice {...routeProps} />} />
-        <Route exact path="/newproject" render={() => <NewProject />} />
-        {/* <Route exact path="/projects" render={() => <ProjectList />} /> */}
+        <Route exact path="/projects" render={() => <ProjectList />} />
         <Route exact path="/projects/:id" render={routeProps => <Project {...routeProps} />} />
         <Route exact path="/tasks" render={() => <TaskList />} />
-        <Route exact path="/addtask" render={() => <AddTask />} />
+        <Route exact path="/clients" render={() => <ClientList />} />
+        <Route exact path="/clients/:id" render={routeProps => <Client {...routeProps} />} />
+        {/* <Route exact path="/addtask" render={() => <AddTask />} /> */}
       </Switch>
     </div>
   );

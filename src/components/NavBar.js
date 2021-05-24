@@ -18,22 +18,22 @@ class NavBar extends Component {
                     activeClassName="NavBar-active">
                     Projects
                 </NavLink>
-                <NavLink exact to="/addtask"
+                <NavLink exact to="/clients"
                     activeClassName="NavBar-active">
-                    Add Task
+                    Clients
                 </NavLink>
                 <NavLink exact to="/invoices"
                     activeClassName="NavBar-active">
                     Invoices
                 </NavLink>
-                <NavLink exact to="/newproject"
-                    activeClassName="NavBar-active">
-                    New Project
-                </NavLink>
                 <NavLink exact to="/export"
                     activeClassName="NavBar-active">
                     Export
                 </NavLink>
+                {/* <NavLink exact to="/addtask"
+                    activeClassName="NavBar-active">
+                    Add Task
+                </NavLink> */}
             </nav>
         );
     }

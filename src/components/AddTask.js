@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import '../css/AddTask.css';
+const port = 4000;
 
 
 class AddTask extends Component {
@@ -11,11 +12,9 @@ class AddTask extends Component {
         this.postTask = this.postTask.bind(this);
     }
     componentDidMount() {
-        axios.get(`http://localhost:4000/projects`)
+        axios.get(`http://localhost:${port}/project`)
             .then(res => {
                 this.setState({ projects: res.data });
-                //const persons = res.data;
-                console.log(this.state.projects);
             });
     }
     postTask() {
@@ -33,29 +32,22 @@ class AddTask extends Component {
 
     render() {
         const projects = this.state.projects.map(proj => {
-            return <option value={proj.projectId}>{proj.name}</option>
+            return <option key={proj.project_id} value={proj.project_id}>{proj.title}</option>
         });
         return (
             <div className="AddTask">
                 <h1>Add A Task</h1>
-                <form action="http://localhost:4000/projects" method="POST">
-                    <label for="project-name">Project Name: </label>
-                    <select name="project-name" id="project-name">
-                        {projects}
-                    </select>
+                <form action={`http://localhost:${port}/task/${this.props.project_id}/add`} method="POST">
+                    <label htmlFor="time">Time: </label>
+                    <input type="text" name="time" id="time" />
                     <br />
-
-                    <label for="hours">Hours: </label>
-                    <input type="text" name="hours" id="hours" />
-                    <br />
-
-                    <label for="description">Description: </label>
-                    <input type="text" name="description" id="description" />
+                    <label htmlFor="description">Description: </label>
+                    <input type="text" name="desc" id="description" />
                     <br />
                     <input type="submit" value="Submit" />
                     <button>Cancel</button>
                 </form>
-            </div>
+            </div >
         );
     }
 }
