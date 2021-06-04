@@ -1,15 +1,20 @@
 import React, { Component } from 'react';
+import Button from '@material-ui/core/Button';
 import axios from 'axios';
 import '../css/Invoice.css'
 import Task from './Task';
+const port = 4000;
 
 class Invoice extends Component {
     constructor(props) {
         super(props);
         this.state = {
             tasks: [],
-            rate: 30.00
+            rate: 30.00,
+            total: 0
         }
+        this.sendEmail = this.sendEmail.bind(this);
+        this.calculateTotal = this.calculateTotal.bind(this);
     }
     componentDidMount() {
         const id = this.props.match.params.id;
@@ -24,19 +29,40 @@ class Invoice extends Component {
                 });
                 console.log(this.state.tasks);
             })
+        this.calculateTotal();
     }
-    render() {
-        /* <tr>
-        <td>Service 1</td>
-        <td className="alignright">$ 20.00</td>
-        </tr> */
+    sendEmail() {
+        let url = `http://localhost:${port}/invoice/email`
+        axios.post(url, {
+            "recipient": "duensing@oregonstate.edu",
+            "senderName": "me",
+            "senderEmail": "duensing@oregonstate.edu",
+            "subject": `Invoice #${this.props.match.params.id}`,
+            "text": "words and things and words",
+            "html": `<!DOCTYPE html><html>
+            <body>
+            <h1>Invoice #${this.props.match.params.id}</h1>
+            <h2>Total: ${this.calculateTotal()}</h2>
+            </body></html>`
+        });
+    }
+    calculateTotal() {
         const total = this.state.tasks.reduce((total, curr) => {
             let hours = curr.time_duration / 60;
             console.log(hours);
             let min = curr.time_duration % 60;
             return total + ((hours * this.state.rate) + ((min / 60) * this.state.rate))
         }, 0);
-        console.log(total);
+        return total;
+        //this.setState({ total: total });
+    }
+    render() {
+        const total = this.state.tasks.reduce((total, curr) => {
+            let hours = curr.time_duration / 60;
+            console.log(hours);
+            let min = curr.time_duration % 60;
+            return total + ((hours * this.state.rate) + ((min / 60) * this.state.rate))
+        }, 0);
         const tasks = this.state.tasks.map((t) => {
             let hours = t.time_duration / 60;
             let min = t.time_duration % 60;
@@ -105,6 +131,10 @@ class Invoice extends Component {
                         </tr>
                     </tbody>
                 </table>
+                <div className="invoice-email">
+                    <p>Click on the button below to send a notification to your client that the invoice is ready.</p>
+                    <Button variant="contained" onClick={this.sendEmail} name="email" id="email" >Email</Button>
+                </div>
             </div>
         );
     }

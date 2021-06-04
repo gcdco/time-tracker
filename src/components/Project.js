@@ -14,7 +14,7 @@ class Project extends Component {
             project: [],
             tasks: []
         }
-        this.calculateHours = this.calculateHours.bind(this);
+        this.sumMinutes = this.sumMinutes.bind(this);
     }
     componentDidMount() {
         const id = this.props.match.params.id;
@@ -29,25 +29,28 @@ class Project extends Component {
 
             })
     }
-    calculateHours() {
-        let hours = this.state.tasks.reduce((total, current) => total + current.time_duration, 0);
-        return hours;
+    sumMinutes() {
+        let minutes = this.state.tasks.reduce(
+            (total, current) =>
+                total + current.time_duration, 0);
+        return minutes;
     }
     render() {
         let tasks = this.state.tasks.map(task => {
             return <Task
                 key={task.task_id}
                 description={task.description}
-                hours={task.time_duration}
-                id={task.task_id} />
+                minutes={task.time_duration}
+                id={task.task_id}
+                project_id={this.props.match.params.id} />
         });
         const projectTitle = this.state.project.title;
-        const hours = this.calculateHours();
+        const minutes = this.sumMinutes();
         return (
             <div className="Project">
                 <div className="Project-header">
                     <h1>{projectTitle}</h1>
-                    <h2>Hours: {hours}</h2>
+                    <h2>{Math.floor(minutes / 12)} Hours, {minutes % 60} minutes</h2>
                 </div>
                 <div className="Project-Addtask">
                     <AddTask project_id={this.state.project.project_id} />

@@ -1,0 +1,33 @@
+.AddTask {
+	width: 50%;
+	margin: 0 auto;
+}
+.AddTask h1 {
+	margin-top: 15px;
+	margin-bottom: 5px;
+}
+
+.AddTask input {
+	margin-bottom: 5px;
+}
+.AddTask label {
+	font-weight: 800;
+}
+.AddTask form {
+	margin: 10px 0;
+	padding: 10px 0;
+	border: 1px solid black;
+}
+button {
+	margin: 0 5px 0 5px;
+	padding: 0 10px 0 10px;
+	background-color: #363636;
+	border: none;
+	color: white;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+}
+button:hover {
+	background-color: #616161;
+}
