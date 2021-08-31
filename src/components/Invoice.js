@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
-import '../css/Invoice.css'
+import '../css/Invoice.css';
 import Task from './Task';
 const port = 4000;
 
@@ -12,7 +12,7 @@ class Invoice extends Component {
             tasks: [],
             rate: 30.00,
             total: 0
-        }
+        };
         this.sendEmail = this.sendEmail.bind(this);
         this.calculateTotal = this.calculateTotal.bind(this);
     }
@@ -28,11 +28,11 @@ class Invoice extends Component {
                     date: res.data.date.created_at
                 });
                 console.log(this.state.tasks);
-            })
+            });
         this.calculateTotal();
     }
     sendEmail() {
-        let url = `http://localhost:${port}/invoice/email`
+        let url = `http://localhost:${port}/invoice/email`;
         axios.post(url, {
             "recipient": "duensing@oregonstate.edu",
             "senderName": "me",
@@ -51,17 +51,16 @@ class Invoice extends Component {
             let hours = curr.time_duration / 60;
             console.log(hours);
             let min = curr.time_duration % 60;
-            return total + ((hours * this.state.rate) + ((min / 60) * this.state.rate))
+            return total + ((hours * this.state.rate) + ((min / 60) * this.state.rate));
         }, 0);
         return total;
-        //this.setState({ total: total });
     }
     render() {
         const total = this.state.tasks.reduce((total, curr) => {
             let hours = curr.time_duration / 60;
             console.log(hours);
             let min = curr.time_duration % 60;
-            return total + ((hours * this.state.rate) + ((min / 60) * this.state.rate))
+            return total + ((hours * this.state.rate) + ((min / 60) * this.state.rate));
         }, 0);
         const tasks = this.state.tasks.map((t) => {
             let hours = t.time_duration / 60;

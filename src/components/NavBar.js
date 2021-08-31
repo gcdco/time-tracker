@@ -1,19 +1,15 @@
 import React, { Component } from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import "../css/NavBar.css"
+import "../css/NavBar.css";
 
 class NavBar extends Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {};
     }
     render() {
         return (
             <nav className="Navbar">
-                {/* <NavLink exact to="/"
-                    activeClassName="NavBar-active">
-                    Home
-                </NavLink> */}
                 <NavLink exact to="/projects"
                     activeClassName="NavBar-active">
                     Projects
@@ -30,10 +26,6 @@ class NavBar extends Component {
                     activeClassName="NavBar-active">
                     Export
                 </NavLink>
-                {/* <NavLink exact to="/addtask"
-                    activeClassName="NavBar-active">
-                    Add Task
-                </NavLink> */}
             </nav>
         );
     }

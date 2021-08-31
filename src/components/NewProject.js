@@ -14,7 +14,7 @@ class NewProject extends Component {
         this.state = {
             clients: [],
             addClient: null
-        }
+        };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -29,9 +29,8 @@ class NewProject extends Component {
                     desc: "",
                     title: ""
                 });
-                //const persons = res.data;
                 console.log(this.state.clients);
-            })
+            });
     }
     handleChange(e) {
         console.log(e);
@@ -47,13 +46,13 @@ class NewProject extends Component {
         })
             .then(function (response) {
                 console.log(response);
-            })
+            });
     }
     render() {
         const clients = this.state.clients.map((client) => {
             return (<MenuItem
                 key={client.client_id}
-                value={client.client_id}>{client.title}</MenuItem>)
+                value={client.client_id}>{client.title}</MenuItem>);
         });
         return (
             <div className="NewProject">
@@ -61,12 +60,10 @@ class NewProject extends Component {
                     Add Project
                 </h1>
                 <form action="/project/add" method="POST">
-                    {/* <label htmlFor="title">Title: </label> */}
                     <TextField id="standard-basic" label="title" name="title" onChange={this.handleChange} />
                     <br /> <br />
                     <InputLabel id="demo-simple-select-label">Clients</InputLabel>
                     <FormControl className="select">
-                        {/* <InputLabel id="demo-simple-select-label">Clients</InputLabel> */}
                         <Select
                             labelId="demo-simple-select-label"
                             id="client"
@@ -78,12 +75,9 @@ class NewProject extends Component {
                         </Select>
                     </FormControl>
                     <br />
-                    {/* <label htmlFor="desc">Description: </label> */}
                     <TextField id="standard-basic" label="description" name="desc" onChange={this.handleChange} />
-                    {/* <input type="text" name="desc" id="desc" /> */}
                     <br /><br />
                     <Button variant="contained" type="submit" name="submit" id="submit" onClick={this.handleSubmit} >Submit</Button>
-                    {/* <input type="submit" name="submit" id="submit" /> */}
                 </form>
             </div>
         );

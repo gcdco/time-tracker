@@ -26,7 +26,6 @@ function App() {
         <Route exact path="/tasks" render={() => <TaskList />} />
         <Route exact path="/clients" render={() => <ClientList />} />
         <Route exact path="/clients/:id" render={routeProps => <Client {...routeProps} />} />
-        {/* <Route exact path="/addtask" render={() => <AddTask />} /> */}
       </Switch>
     </div>
   );
